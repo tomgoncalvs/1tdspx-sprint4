@@ -1,0 +1,32 @@
+
+.floatingMenu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 1000;
+  }
+  
+  .menuButton {
+    background: #333;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+  }
+  
+  .menuItems {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+  }
+  
+  .menuItems a {
+    padding: 10px;
+    text-decoration: none;
+    color: #333;
+    display: block;
+  }
+  
