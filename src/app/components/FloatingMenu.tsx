@@ -19,8 +19,8 @@ const MenuButton = styled.button<{ $isOpen: boolean }>`
   transition: background-color 0.3s ease;
 `;
 
-const MenuItems = styled.div`
-  display: ${(props) => (props.isOpen ? 'flex' : 'none')};
+const MenuItems = styled.div<{ $isOpen: boolean }>`
+  display: ${(props) => (props.$isOpen ? 'flex' : 'none')};
   flex-direction: column;
   align-items: flex-start;
   padding: 10px;
@@ -52,7 +52,7 @@ const FloatingMenu = () => {
   return (
     <FloatingMenuContainer>
       <MenuButton $isOpen={isOpen} onClick={toggleMenu}>☰</MenuButton>
-      
+
       <MenuItems isOpen={isOpen}>
         <Link href="/" passHref>
           <MenuItemLink onClick={toggleMenu}>Home</MenuItemLink>
