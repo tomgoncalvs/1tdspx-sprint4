@@ -1,5 +1,6 @@
-"use client";
-import Image from 'next/image'; // Importando Image de 'next/image' para otimização
+import React, { useEffect, useState } from "react";
+import Image from "next/image";
+import axios from "axios";
 import {
   StyledCasesContainer,
   StyledMiniTitle,
@@ -7,64 +8,55 @@ import {
   StyledSubtitle,
   StyledCardsContainer,
   StyledCard,
-  StyledCardImage, 
+  StyledCardImage,
   StyledCardTitle,
   StyledCardDescription,
   StyledMoreButton,
-} from './Cases.Style';
+} from "./Cases.Style";
 
 const SolutionsPage = () => {
+  const [cases, setCases] = useState([]);
+
+  useEffect(() => {
+    const fetchCases = async () => {
+      try {
+        const response = await axios.get("http://localhost:3000/site_cases");
+        setCases(response.data);
+      } catch (error) {
+        console.error("Erro ao buscar dados:", error);
+      }
+    };
+
+    fetchCases();
+  }, []);
+
   return (
-    <StyledCasesContainer className='Cases'>
+    <StyledCasesContainer className="Cases">
       <StyledMiniTitle>CASES</StyledMiniTitle>
       <StyledTitle>Conheça nossas</StyledTitle>
       <StyledTitle>soluções desenvolvidas</StyledTitle>
-      <StyledSubtitle>Alguns clientes que confiaram no nosso trabalho</StyledSubtitle>
+      <StyledSubtitle>
+        Alguns clientes que confiaram no nosso trabalho
+      </StyledSubtitle>
       <StyledCardsContainer>
-        {/* Repetir o StyledCard para cada cliente como necessário */}
-        <StyledCard>
-          <StyledCardImage>
-          <Image
-              src='/images/logo-porto.png' 
-              alt="Cliente 1"
-              width={500}
-              height={300}
-              layout="responsive"
-            />
-          </StyledCardImage>
-          <StyledCardTitle>Porto Seguro</StyledCardTitle>
-          <StyledCardDescription>Desenvolvimento de um aplicativo de solicitação de guinchos On-Demand, aumentando a assertividade do serviço de guinchos</StyledCardDescription>
-          <StyledMoreButton>Saiba Mais</StyledMoreButton>
-        </StyledCard>
-        <StyledCard>
-          <StyledCardImage>
-          <Image
-              src='/images/logo-porto.png'
-              alt="Cliente 1"
-              width={500}
-              height={300}
-              layout="responsive"
-            />
-          </StyledCardImage>
-          <StyledCardTitle>Porto Seguro</StyledCardTitle>
-          <StyledCardDescription>Desenvolvimento de um aplicativo de solicitação de guinchos On-Demand, aumentando a assertividade do serviço de guinchos</StyledCardDescription>
-          <StyledMoreButton>Saiba Mais</StyledMoreButton>
-        </StyledCard>
-        <StyledCard>
-          <StyledCardImage>
-          <Image
-              src='/images/logo-porto.png'
-              alt="Cliente 1"
-              width={500}
-              height={300}
-              layout="responsive"
-            />
-          </StyledCardImage>
-          <StyledCardTitle>Porto Seguro</StyledCardTitle>
-          <StyledCardDescription>Desenvolvimento de um aplicativo de solicitação de guinchos On-Demand, aumentando a assertividade do serviço de guinchos</StyledCardDescription>
-          <StyledMoreButton>Saiba Mais</StyledMoreButton>
-        </StyledCard>
-        
+        {cases.map((caseItem) => (
+          <StyledCard key={caseItem.ID}>
+            <StyledCardImage> {/* Caso você receba erro para renderizar as imagens confira o next.config e garata que o dominio onde a imagem está hospedada está listado lá. */}
+              {caseItem.URL && (
+                <Image
+                  src={caseItem.URL}
+                  alt={caseItem.TITULO || "Imagem do case"}
+                  width={500}
+                  height={300}
+                  layout="responsive"
+                />
+              )}
+            </StyledCardImage>
+            <StyledCardTitle>{caseItem.TITULO}</StyledCardTitle>
+            <StyledCardDescription>{caseItem.DESCRICAO}</StyledCardDescription>
+            <StyledMoreButton>{caseItem.BOTAO}</StyledMoreButton>
+          </StyledCard>
+        ))}
       </StyledCardsContainer>
     </StyledCasesContainer>
   );
