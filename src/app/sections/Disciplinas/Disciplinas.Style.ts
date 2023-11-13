@@ -46,8 +46,8 @@ export const StyledCard = styled.div`
 `;
 
 export const StyledCardImage = styled.div`
-  min-width: 100px;
-  min-height: 100px;
+  min-width: 100px !important;
+  min-height: 100px !important;
   border-radius: 50%;
   overflow: hidden;
   position: relative;
