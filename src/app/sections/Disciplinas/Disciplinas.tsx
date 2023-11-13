@@ -1,4 +1,3 @@
-"use client";
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import axios from 'axios';
@@ -12,20 +11,27 @@ import {
   StyledPageDisciplinas,
 } from './Disciplinas.Style';
 
+interface Disciplina {
+  ID: number;
+  URL: string;
+  TITULO: string;
+  DESCRICAO: string;
+}
+
 const DisciplinasPage = () => {
-  const [cases, setCases] = useState([]);
+  const [disciplinas, setDisciplinas] = useState<Disciplina[]>([]);
 
   useEffect(() => {
-    const fetchCases = async () => {
+    const fetchDisciplinas = async () => {
       try {
         const response = await axios.get('http://localhost:3000/site_disciplinas');
-        setCases(response.data);
+        setDisciplinas(response.data);
       } catch (error) {
         console.error('Erro ao buscar dados:', error);
       }
     };
 
-    fetchCases();
+    fetchDisciplinas();
   }, []);
 
   return (
@@ -33,17 +39,17 @@ const DisciplinasPage = () => {
       <StyledMiniTitle>- Lista de Matérias -</StyledMiniTitle>
       <StyledTitle>Disciplinas</StyledTitle>
       <StyledCardsContainer>
-        {cases.map((caseItem) => (
-          <StyledCard key={caseItem.ID}>
+        {disciplinas.map((disciplina) => (
+          <StyledCard key={disciplina.ID}>
             <Image 
-              src={caseItem.URL} 
-              alt={caseItem.TITULO} 
+              src={disciplina.URL} 
+              alt={disciplina.TITULO} 
               width={32} 
               height={32} 
             />
             <StyledCardContent>
-              <StyledCardTitle>{caseItem.TITULO}</StyledCardTitle>
-              <StyledCardDescription>{caseItem.DESCRICAO}</StyledCardDescription>
+              <StyledCardTitle>{disciplina.TITULO}</StyledCardTitle>
+              <StyledCardDescription>{disciplina.DESCRICAO}</StyledCardDescription>
             </StyledCardContent>
           </StyledCard>
         ))}
