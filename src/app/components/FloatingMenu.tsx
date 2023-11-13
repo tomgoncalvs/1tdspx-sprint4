@@ -53,7 +53,7 @@ const FloatingMenu = () => {
     <FloatingMenuContainer>
       <MenuButton $isOpen={isOpen} onClick={toggleMenu}>☰</MenuButton>
 
-      <MenuItems isOpen={isOpen}>
+      <MenuItems $isOpen={isOpen}> {/* Aqui estava o erro */}
         <Link href="/" passHref>
           <MenuItemLink onClick={toggleMenu}>Home</MenuItemLink>
         </Link>
