@@ -14,8 +14,16 @@ import {
   StyledMoreButton,
 } from "./Cases.Style";
 
+interface CaseItem {
+  ID: number;
+  URL: string;
+  TITULO: string;
+  DESCRICAO: string;
+  BOTAO: string;
+}
+
 const SolutionsPage = () => {
-  const [cases, setCases] = useState([]);
+  const [cases, setCases] = useState<CaseItem[]>([]);
 
   useEffect(() => {
     const fetchCases = async () => {
@@ -41,7 +49,7 @@ const SolutionsPage = () => {
       <StyledCardsContainer>
         {cases.map((caseItem) => (
           <StyledCard key={caseItem.ID}>
-            <StyledCardImage> {/* Caso você receba erro para renderizar as imagens confira o next.config e garata que o dominio onde a imagem está hospedada está listado lá. */}
+            <StyledCardImage>
               {caseItem.URL && (
                 <Image
                   src={caseItem.URL}
