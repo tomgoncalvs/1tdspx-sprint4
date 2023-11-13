@@ -49,7 +49,7 @@ const TeamPage = () => {
       <StyledCardsContainer>
         {teamMembers.map((member) => (
           <StyledCard key={member.ID}>
-            <StyledCardImage>
+            <StyledCardImage src={member.URL}>
               <Image src={member.URL} alt={`Avatar ${member.NOME}`} width={210} height={210} />
             </StyledCardImage>
             <StyledCardName>{member.NOME}</StyledCardName>
