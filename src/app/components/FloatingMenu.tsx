@@ -10,8 +10,8 @@ const FloatingMenuContainer = styled.nav`
   z-index: 1000;
 `;
 
-const MenuButton = styled.button`
-  background: ${(props) => (props.isOpen ? 'lightgrey' : '#2e279d')};
+const MenuButton = styled.button<{ $isOpen: boolean }>`
+  background: ${(props) => (props.$isOpen ? 'lightgrey' : '#2e279d')};
   color: white;
   border: none;
   padding: 10px 44px;
@@ -51,9 +51,8 @@ const FloatingMenu = () => {
 
   return (
     <FloatingMenuContainer>
-      <MenuButton isOpen={isOpen} onClick={toggleMenu}>
-        ☰
-      </MenuButton>
+      <MenuButton $isOpen={isOpen} onClick={toggleMenu}>☰</MenuButton>
+      
       <MenuItems isOpen={isOpen}>
         <Link href="/" passHref>
           <MenuItemLink onClick={toggleMenu}>Home</MenuItemLink>
