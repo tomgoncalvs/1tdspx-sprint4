@@ -17,8 +17,17 @@ import {
 } from '../Team/Team.Style'; 
 import { StyledMiniTitle } from '../Cases/Cases.Style';
 
+interface TeamMember {
+  ID: number;
+  URL: string;
+  NOME: string;
+  DESCRICAO: string;
+  URL_LINKEDIN: string;
+  URL_GITHUB: string;
+}
+
 const TeamPage = () => {
-  const [teamMembers, setTeamMembers] = useState([]);
+  const [teamMembers, setTeamMembers] = useState<TeamMember[]>([]);
 
   useEffect(() => {
     const fetchTeamMembers = async () => {

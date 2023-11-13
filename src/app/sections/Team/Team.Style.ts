@@ -10,7 +10,7 @@ export const StyledTeamContainer = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 40px;
-  background-color: #ffffff
+  background-color: #ffffff;
   text-align: center;
 `;
 
@@ -32,9 +32,9 @@ export const StyledTeamTittle = styled.h1`
     margin-bottom: 40px;
     text-align: center;
   }
-  `;
+`;
 
-  export const StyledCardsContainer = styled.div`
+export const StyledCardsContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 10px;
@@ -77,7 +77,7 @@ export const StyledCard = styled.div`
   }
 `;
 
-export const StyledCardImage = styled.div`
+export const StyledCardImage = styled.div<{ src: string }>`
   width: 210px;
   height: 205px;
   border-radius: 5%;
@@ -87,7 +87,7 @@ export const StyledCardImage = styled.div`
   background-color: #ddd;
   background-size: cover;
   background-position: center;
-  background-image: url(${props => props.src}); // Adiciona a imagem como plano de fundo
+  background-image: url(${props => props.src});
   @media (max-width: ${ExtraSmallDevices}) {
     width: 99%;
     height: 60%;
@@ -126,14 +126,13 @@ export const StyledSocialIcons = styled.div`
   justify-content: center;
   gap: 10px;
   margin-top: 20px;
-  color:black
+  color:black;
 `;
 
 export const StyledIcon = styled.a`
   color: #2E279D;
   font-size: 24px;
   transition: color 0.3s ease;
-
   &:hover {
     color: #ff4136;
   }
