@@ -32,7 +32,7 @@ const TeamPage = () => {
   useEffect(() => {
     const fetchTeamMembers = async () => {
       try {
-        const response = await axios.get('http://143.110.216.181:3000/site_time');
+        const response = await axios.get('http://localhost:3000/site_time');
         setTeamMembers(response.data);
       } catch (error) {
         console.error('Erro ao buscar dados:', error);

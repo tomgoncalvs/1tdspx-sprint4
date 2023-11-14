@@ -28,7 +28,7 @@ const SolutionsPage = () => {
   useEffect(() => {
     const fetchCases = async () => {
       try {
-        const response = await axios.get("http://143.110.216.181:3000/site_cases");
+        const response = await axios.get("http://localhost:3000/site_cases");
         setCases(response.data);
       } catch (error) {
         console.error("Erro ao buscar dados:", error);
